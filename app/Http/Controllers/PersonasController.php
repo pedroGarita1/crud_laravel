@@ -11,7 +11,7 @@ class PersonasController extends Controller
     public function index()
     {
         //Pagina de inicio
-        $datos = Personas::orderBy('paterno', 'desc')->paginate(5);
+        $datos = Personas::orderBy('paterno', 'desc')->paginate(3);
         return view('welcome', compact('datos'));
     }
     public function create()
@@ -28,6 +28,7 @@ class PersonasController extends Controller
         $personas->nombre = $request->post('nombre');
         $personas->fecha_nacimiento = $request->post('fecha_nacimiento');
         $personas->save();
+        
         
         return redirect()->route('personas.index')->with("success", "agregado con exito!!!");
     }
